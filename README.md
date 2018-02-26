@@ -1,6 +1,9 @@
 # mruby-aws-sigv4   [![Build Status](https://travis-ci.org/hfm/mruby-aws-sigv4.svg?branch=master)](https://travis-ci.org/hfm/mruby-aws-sigv4)
-AwsSigv4 class
+
+AWS Signature Version 4 signing library for mruby. mruby port of [aws-sigv4 gem](https://rubygems.org/gems/aws-sigv4/).
+
 ## install by mrbgems
+
 - add conf.gem line to `build_config.rb`
 
 ```ruby
@@ -23,5 +26,6 @@ p t.bye
 ```
 
 ## License
+
 under the MIT License:
-- see LICENSE file
+- see [LICENSE](./LICENSE) file
