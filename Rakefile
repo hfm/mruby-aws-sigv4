@@ -13,12 +13,12 @@ file :mruby do
 end
 
 desc "compile binary"
-task :compile => :mruby do
+task compile: :mruby do
   sh "cd mruby && rake all MRUBY_CONFIG=#{MRUBY_CONFIG}"
 end
 
 desc "test"
-task :test => :mruby do
+task test: :mruby do
   sh "cd mruby && rake all test MRUBY_CONFIG=#{MRUBY_CONFIG}"
 end
 
@@ -28,4 +28,4 @@ task :clean do
   sh "cd mruby && rake deep_clean"
 end
 
-task :default => :compile
+task default: :compile

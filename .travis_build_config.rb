@@ -2,10 +2,11 @@ MRuby::Build.new do |conf|
   toolchain :gcc
   conf.gembox 'default'
   conf.enable_test
-
   conf.gem File.expand_path(File.dirname(__FILE__))
-  conf.gem mgem: 'mruby-dir'
-  conf.gem mgem: 'mruby-dir-glob'
-  conf.gem mgem: 'mruby-io'
-  conf.gem mgem: 'mruby-regexp-pcre'
+
+  if ENV['DEBUG'] == 'true'
+    conf.enable_debug
+    conf.cc.defines = %w(MRB_ENABLE_DEBUG_HOOK)
+    conf.gem core: 'mruby-bin-debugger'
+  end
 end
