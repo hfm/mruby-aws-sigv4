@@ -64,24 +64,24 @@ Method | Return object
 ---|---
 `#access_key_id` | String
 `#secret_access_key` | String
-`#session_token` | String, nil
+`#session_token` | String or nil
 
-A credential provider is any object that responds to `#credentials`
-returning another object that responds to `#access_key_id`, `#secret_access_key`,
-and `#session_token`.
+A credential provider is any object that responds to `#credentials` returning another object that responds to `#access_key_id`, `#secret_access_key`, and `#session_token`.
 
 ```ruby
+creds_provider = Aws::Sigv4::StaticCredentialsProvider.new(
+    access_key_id: 'akid',
+    secret_access_key: 'secret',
+)
+
 signer = Aws::Sigv4::Signer.new(
   service: 's3',
   region: 'us-east-1',
-  credentials_provider: Aws::Sigv4::StaticCredentialsProvider.new(
-    access_key_id: 'akid',
-    secret_access_key: 'secret',
-  ),
+  credentials_provider: creds_provider,
 )
 ```
 
-#### Other parametars
+#### Other initialization parametars
 
 option | default | description
 ---|---|---
@@ -89,11 +89,6 @@ option | default | description
 `:unsigned_headers` | [] | A list of headers that should not be signed. This is useful when a proxy modifies headers, such as 'User-Agent', invalidating a signature.
 `:uri_escape_path` | true | When `true`, the request URI path is uri-escaped as part of computing the canonical request string. This is required for every service, except Amazon S3, as of late 2016.
 `:apply_checksum_header` | true | When `true`, the computed content checksum is returned in the hash of signature headers. This is required for AWS Glacier, and optional for every other AWS service as of late 2016.
-
-Aws::Sigv4::Signer provides two methods for generating signatures:
-
-- sign\_request
-- presign\_url
 
 ### `#sign_request`
 
