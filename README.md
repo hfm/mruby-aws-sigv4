@@ -17,9 +17,12 @@ end
 
 ## Usage
 
-### Aws::Sigv4::Signer class
+Aws::Sigv4::Signer, which is a utility class for creating the signature of AWS Signature Version 4, provides two methods for generating signatures:
 
-#### Using static credentials
+- sign\_request
+- presign\_url
+
+### Using static credentials
 
 ```ruby
 signer = Aws::Sigv4::Signer.new(
@@ -30,7 +33,7 @@ signer = Aws::Sigv4::Signer.new(
 )
 ```
 
-#### Using :credentials
+### Using :credentials
 
 ```ruby
 signer = Aws::Sigv4::Signer.new(
@@ -43,7 +46,7 @@ signer = Aws::Sigv4::Signer.new(
 )
 ```
 
-#### Using :credentials_provider
+### Using :credentials_provider
 
 ```ruby
 signer = Aws::Sigv4::Signer.new(
