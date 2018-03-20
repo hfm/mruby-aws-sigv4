@@ -19,8 +19,8 @@ end
 
 Aws::Sigv4::Signer is a utility class for creating a signature of AWS Signature Version 4. This class provides two methods for generating signatures:
 
-- sign\_request
-- presign\_url
+- [`:sign_request`](#sign_request)
+- [`:presign_url`](#presign_url)
 
 ### Initialize
 
