@@ -17,7 +17,10 @@ end
 
 ## Usage of Aws::Sigv4::Signer
 
-Aws::Sigv4::Signer is a utility class for creating a signature of AWS Signature Version 4.
+Aws::Sigv4::Signer is a utility class for creating a signature of AWS Signature Version 4. This class provides two methods for generating signatures:
+
+- sign\_request
+- presign\_url
 
 ### Initialize
 
@@ -78,22 +81,21 @@ signer = Aws::Sigv4::Signer.new(
 )
 ```
 
-    session_token: 'token',
 #### Other parametars
 
 option | default | description
 ---|---|---
-:session_token | nil | a
-:unsigned\_headers | [] | A list of headers that should not be signed. This is useful when a proxy modifies headers, such as 'User-Agent', invalidating a signature.
-:uri\_escape\_path | true | When `true`, the request URI path is uri-escaped as part of computing the canonical request string. This is required for every service, except Amazon S3, as of late 2016.
-:apply\_checksum\_header | true | When `true`, the computed content checksum is returned in the hash of signature headers. This is required for AWS Glacier, and optional for every other AWS service as of late 2016.
+`:session_token` | nil | [X-Amz-Security-Token header](https://docs.aws.amazon.com/STS/latest/APIReference/CommonParameters.html#CommonParameters-X-Amz-Security-Token).
+`:unsigned_headers` | [] | A list of headers that should not be signed. This is useful when a proxy modifies headers, such as 'User-Agent', invalidating a signature.
+`:uri_escape_path` | true | When `true`, the request URI path is uri-escaped as part of computing the canonical request string. This is required for every service, except Amazon S3, as of late 2016.
+`:apply_checksum_header` | true | When `true`, the computed content checksum is returned in the hash of signature headers. This is required for AWS Glacier, and optional for every other AWS service as of late 2016.
 
 Aws::Sigv4::Signer provides two methods for generating signatures:
 
 - sign\_request
 - presign\_url
 
-### sign\_request
+### `#sign_request`
 
 #### GET
 
@@ -113,7 +115,7 @@ signature = signer.sign_request(
 )
 ```
 
-### presign\_url
+### `#presign_url`
 
 ```ruby
 url = signer.presigned_url(
