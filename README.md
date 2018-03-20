@@ -21,7 +21,7 @@ Aws::Sigv4::Signer is a utility class for creating a signature of AWS Signature 
 
 ### Initialize
 
-The signer requires ':service', `:region`, and credentials for initialization. You can configure it with the following ways.
+The signer requires `:service`, `:region`, and credentials for initialization. You can configure it with the following ways.
 
 #### Using static credentials
 
