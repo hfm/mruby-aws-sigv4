@@ -21,11 +21,11 @@ Aws::Sigv4::Signer is a utility class for creating a signature of AWS Signature 
 
 ### Initialize
 
-The signer requires service, region, and credentials for initialization. You can configure it with the following ways.
+The signer requires ':service', `:region`, and credentials for initialization. You can configure it with the following ways.
 
 #### Using static credentials
 
-Static credentials is the most simple way to configure the signer. You can set access\_key\_id and secret\_access\_key.
+Static credentials is the most simple way to configure. You can set `:access_key_id` and `:secret_access_key`.
 
 ```ruby
 signer = Aws::Sigv4::Signer.new(
