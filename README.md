@@ -41,13 +41,15 @@ signer = Aws::Sigv4::Signer.new(
 You can set [Credentials](./mrblib/credencials.rb) to `:credentials`.
 
 ```ruby
+creds = Aws::Sigv4::Credentials.new(
+  access_key_id: 'AKIDEXAMPLE',
+  secret_access_key: 'wJalrXUtnFEMI/K7MDENG+bPxRfiCYEXAMPLEKEY',
+)
+
 signer = Aws::Sigv4::Signer.new(
   service: 's3',
   region: 'us-east-1',
-  credentials: Aws::Sigv4::Credentials.new(
-    access_key_id: 'AKIDEXAMPLE',
-    secret_access_key: 'wJalrXUtnFEMI/K7MDENG+bPxRfiCYEXAMPLEKEY',
-  ),
+  credentials: creds,
 )
 ```
 
