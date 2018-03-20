@@ -58,7 +58,7 @@ signer = Aws::Sigv4::Signer.new(
 
 #### Using `:credentials_provider` parametar:
 
-The `:credentials_provider` requires any object that the following methods:
+`:credentials_provider` requires any object that has the following methods:
 
 Method | Return object
 ---|---
@@ -66,12 +66,11 @@ Method | Return object
 `#secret_access_key` | String
 `#session_token` | String or nil
 
-A credential provider is any object that responds to `#credentials` returning another object that responds to `#access_key_id`, `#secret_access_key`, and `#session_token`.
 
 ```ruby
 creds_provider = Aws::Sigv4::StaticCredentialsProvider.new(
-    access_key_id: 'akid',
-    secret_access_key: 'secret',
+  access_key_id: 'akid',
+  secret_access_key: 'secret',
 )
 
 signer = Aws::Sigv4::Signer.new(
