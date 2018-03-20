@@ -84,7 +84,7 @@ signer = Aws::Sigv4::Signer.new(
 
 option | default | description
 ---|---|---
-`:session_token` | nil | [X-Amz-Security-Token header](https://docs.aws.amazon.com/STS/latest/APIReference/CommonParameters.html#CommonParameters-X-Amz-Security-Token).
+`:session_token` | nil | The [X-Amz-Security-Token](https://docs.aws.amazon.com/STS/latest/APIReference/CommonParameters.html#CommonParameters-X-Amz-Security-Token).
 `:unsigned_headers` | [] | A list of headers that should not be signed. This is useful when a proxy modifies headers, such as 'User-Agent', invalidating a signature.
 `:uri_escape_path` | true | When `true`, the request URI path is uri-escaped as part of computing the canonical request string. This is required for every service, except Amazon S3, as of late 2016.
 `:apply_checksum_header` | true | When `true`, the computed content checksum is returned in the hash of signature headers. This is required for AWS Glacier, and optional for every other AWS service as of late 2016.
