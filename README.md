@@ -15,11 +15,13 @@ MRuby::Build.new do |conf|
 end
 ```
 
-## Usage
+## Usage of Aws::Sigv4::Signer
+
+Aws::Sigv4::Signer is a utility class for creating a signature of AWS Signature Version 4.
 
 ### Initialize
 
-Aws::Sigv4::Signer is a utility class for creating a signature of AWS Signature Version 4. The signer requires service, region, and credentials for initialization. You can configure it with the following ways:
+The signer requires service, region, and credentials for initialization. You can configure it with the following ways:
 
 #### Using static credentials
 
@@ -36,7 +38,7 @@ signer = Aws::Sigv4::Signer.new(
 
 #### Using `:credentials` parametar:
 
-You can set Credentials to `:credentials`.
+You can set [Credentials](./mrblib/credencials.rb) to `:credentials`.
 
 ```ruby
 signer = Aws::Sigv4::Signer.new(
