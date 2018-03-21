@@ -132,6 +132,14 @@ signature.headers['x-amz-content-sha256']
 signature.headers['x-amz-security-token']
 ```
 
+In addition to computing the signature headers, the canonicalized request, string to sign and content sha256 checksum are also available. These values are useful for debugging signature errors returned by AWS.
+
+```ruby
+signature.canonical_request #=> "..."
+signature.string_to_sign #=> "..."
+signature.content_sha256 #=> "..."
+```
+
 #### `#presign_url` method
 
 Signs a URL with query authentication. Using query parameters to authenticate requests is useful when you want to express a request entirely in a URL.
