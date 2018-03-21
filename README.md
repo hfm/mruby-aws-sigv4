@@ -89,8 +89,8 @@ option | default | description
 
 Aws::Sigv4::Signer class provides two methods for generating signatures:
 
-- `:sign_request`
-- `:presign_url`
+- [`:sign_request`](#sign_request-method)
+- [`:presign_url`](#presign_url-method)
 
 #### `#sign_request` method
 
