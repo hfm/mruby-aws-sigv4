@@ -109,18 +109,21 @@ signature = signer.sign_request(
   url: 'http://domain.com',
   body: 'helloworld',
 )
+```
 
-# Use signature.headers:
-#   signature.headers['authorization']
-#   signature.headers['host']
-#   signature.headers['x-amz-date']
-#   signature.headers['x-amz-content-sha256']
-#   signature.headers['x-amz-security-token']
+Apply the following hash of headers in Signature class to your HTTP request:
+
+```ruby
+signature.headers['authorization']
+signature.headers['host']
+signature.headers['x-amz-date']
+signature.headers['x-amz-content-sha256']
+signature.headers['x-amz-security-token']
 ```
 
 #### `#presign_url` method
 
-Signs a URL with query authentication. Using query parameters to authenticate requests is useful when you want to express a request entirely in a URL. This method is also referred as presigning a URL.
+Signs a URL with query authentication. Using query parameters to authenticate requests is useful when you want to express a request entirely in a URL.
 
 ```ruby
 url = signer.presigned_url(
