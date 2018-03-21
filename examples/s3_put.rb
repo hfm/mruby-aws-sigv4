@@ -11,7 +11,7 @@ signer = Aws::Sigv4::Signer.new(
 
 signature = signer.sign_request(
   http_method: 'PUT',
-  url: url.to_s,
+  url: url,
   body: message,
 )
 
@@ -29,7 +29,7 @@ puts res.header
 
 signature = signer.sign_request(
   http_method: 'GET',
-  url: url.to_s,
+  url: url,
 )
 
 puts "\n--- --- --- --- --- ---\n\ndownloading...\n\n"
