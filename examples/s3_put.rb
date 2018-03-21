@@ -6,13 +6,13 @@ signer = Aws::Sigv4::Signer.new(
   service: 's3',
   region: '<region>',
   access_key_id: 'AKIDEXAMPLE',
-  secret_access_key: 'wJalrXUtnFEMI/K7MDENG+bPxRfiCYEXAMPLEKEY',
+  secret_access_key: 'wJalrXUtnFEMI/K7MDENG+bPxRfiCYEXAMPLEKEY'
 )
 
 signature = signer.sign_request(
   http_method: 'PUT',
   url: url,
-  body: message,
+  body: message
 )
 
 puts "uploading...\n\n"
@@ -29,7 +29,7 @@ puts res.header
 
 signature = signer.sign_request(
   http_method: 'GET',
-  url: url,
+  url: url
 )
 
 puts "\n--- --- --- --- --- ---\n\ndownloading...\n\n"
@@ -39,9 +39,7 @@ res = http.get(url.path, {
   'X-Amz-Content-Sha256' => signature.headers['x-amz-content-sha256'],
   'Authorization'        => signature.headers['authorization'],
 })
-puts res.header
-puts
-puts res.body
+puts "#{res.header}\n#{res.body}"
 
 __END__
 $ mruby/bin/mruby examples/s3_put.rb
