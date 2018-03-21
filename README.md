@@ -96,22 +96,26 @@ Aws::Sigv4::Signer class provides two methods for generating signatures:
 
 Computes a version 4 signature signature. Returns the resultant signature as a hash of headers to apply to your HTTP request. The given request is not modified.
 
-##### GET
-
 ```ruby
+# GET
 signature = signer.sign_request(
   http_method: 'GET',
   url: 'http://domain.com',
 )
-```
 
-##### PUT
-
-```ruby
+# PUT
 signature = signer.sign_request(
   http_method: 'PUT',
   url: 'http://domain.com',
+  body: 'helloworld',
 )
+
+# Use signature.headers:
+#   signature.headers['authorization']
+#   signature.headers['host']
+#   signature.headers['x-amz-date']
+#   signature.headers['x-amz-content-sha256']
+#   signature.headers['x-amz-security-token']
 ```
 
 #### `#presign_url` method
