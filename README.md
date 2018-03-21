@@ -102,8 +102,8 @@ param | type | default | description
 ---|---|---|---
 `:http_method` | String | - | One of 'GET', 'HEAD', 'PUT', 'POST', 'PATCH', or 'DELETE'
 `:url` |  String, URI::HTTPS, URI::HTTP | - | The request URI. Must be a valid HTTP or HTTPS URI.
-`:headers` | Hash | {} | This parametar is optional. A hash of headers to sign.
-`:body` | String, IO | '' | This parametar is optional. The HTTP request body for computing a sha256 checksum. If the 'X-Amz-Content-Sha256' header is set to `:headers`, This param will not be read.
+`:headers` | Hash | {} | This parameter is optional. A hash of headers to sign.
+`:body` | String, IO | '' | This parameter is optional. The HTTP request body for computing a sha256 checksum. If the 'X-Amz-Content-Sha256' header is set to `:headers`, This param will not be read.
 
 ##### Examples
 
