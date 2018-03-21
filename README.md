@@ -142,9 +142,31 @@ signature.content_sha256 #=> "..."
 
 #### `#presign_url` method
 
-Signs a URL with query authentication. Using query parameters to authenticate requests is useful when you want to express a request entirely in a URL.
+Signs a URL with query authentication. Returns an instance of [HTTPS::URI or HTTP::URI](https://github.com/zzak/mruby-uri) which has [query parameters (AWS Signature Version 4)](http://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-query-string-auth.html) to authenticate requests. This is useful when you want to express a request entirely in a URL.
+
+##### Options
+
+param | type | default | description
+---|---|---|---
+`:http_method` | String | - | One of 'GET', 'HEAD', 'PUT', 'POST', 'PATCH', or 'DELETE'
+`:url` |  String, URI::HTTPS, URI::HTTP | - | The URI to sign.
+`:headers` | Hash | {} | Headers that should be signed and sent along with the request. All x-amz-\* headers must be present during signing. Other headers are optional.
+`:expires_in` | Integer | 900 | How long the presigned URL should be valid for. Defaults to 15 minutes (900 seconds).
+`:body` | String, IO | '' | If the `:body` is set, then a SHA256 hexdigest will be computed of the body. If `:body_digest` is set, this option is ignored. If neither are set, then the `:body_digest` will be computed of the empty string.
+`:body_digest` | String | - | The SHA256 hexdigest of the request body. If you wish to send the presigned request without signing the body, you can pass 'UNSIGNED-PAYLOAD' as the `:body_digest` in place of passing `:body`.
+`:time` | Time | Time.now | Time of the signature. You should only set this value for testing.
+
+##### Examples
 
 ```ruby
+#GET 
+url = signer.presigned_url(
+  http_method: 'GET',
+  url: 'https://my-bucket.s3-us-east-1.amazonaws.com/key',
+  expires_in: 60
+)
+
+#PUT 
 url = signer.presigned_url(
   http_method: 'PUT',
   url: 'https://my-bucket.s3-us-east-1.amazonaws.com/key',
