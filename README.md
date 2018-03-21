@@ -1,4 +1,4 @@
-# mruby-aws-sigv4   [![Build Status](https://travis-ci.org/hfm/mruby-aws-sigv4.svg?branch=master)](https://travis-ci.org/hfm/mruby-aws-sigv4)
+# mruby-aws-sigv4 [![Build Status](https://travis-ci.org/hfm/mruby-aws-sigv4.svg?branch=master)](https://travis-ci.org/hfm/mruby-aws-sigv4)
 
 [AWS Signature Version 4](https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html) signing library for mruby. mruby port of [aws-sigv4 gem](https://rubygems.org/gems/aws-sigv4/).
 
@@ -15,18 +15,15 @@ MRuby::Build.new do |conf|
 end
 ```
 
-## Usage of Aws::Sigv4::Signer
+## How to use Aws::Sigv4::Signer
 
-Aws::Sigv4::Signer is a utility class for creating a signature of AWS Signature Version 4. This class provides two methods for generating signatures:
-
-- [`:sign_request`](#sign_request)
-- [`:presign_url`](#presign_url)
+Aws::Sigv4::Signer is a utility class for creating a signature of AWS Signature Version 4.
 
 ### Initialize
 
 The signer requires `:service`, `:region`, and credentials for initialization. You can configure it with the following ways.
 
-#### Using static credentials
+#### 1. Using static credentials
 
 Static credentials is the most simple way to configure. You can set `:access_key_id` and `:secret_access_key`.
 
@@ -39,7 +36,7 @@ signer = Aws::Sigv4::Signer.new(
 )
 ```
 
-#### Using `:credentials` parametar
+#### 2. Using `:credentials` parametar
 
 You can set [Credentials](./mrblib/credencials.rb) to `:credentials`.
 
@@ -56,7 +53,7 @@ signer = Aws::Sigv4::Signer.new(
 )
 ```
 
-#### Using `:credentials_provider` parametar:
+#### 3. Using `:credentials_provider` parametar:
 
 `:credentials_provider` requires any object that has the following methods:
 
@@ -65,7 +62,6 @@ Method | Return object
 `#access_key_id` | String
 `#secret_access_key` | String
 `#session_token` | String or nil
-
 
 ```ruby
 creds_provider = Aws::Sigv4::StaticCredentialsProvider.new(
@@ -86,12 +82,21 @@ option | default | description
 ---|---|---
 `:session_token` | nil | The [X-Amz-Security-Token](https://docs.aws.amazon.com/STS/latest/APIReference/CommonParameters.html#CommonParameters-X-Amz-Security-Token).
 `:unsigned_headers` | [] | A list of headers that should not be signed. This is useful when a proxy modifies headers, such as 'User-Agent', invalidating a signature.
-`:uri_escape_path` | true | When `true`, the request URI path is uri-escaped as part of computing the canonical request string. This is required for every service, except Amazon S3, as of late 2016.
-`:apply_checksum_header` | true | When `true`, the computed content checksum is returned in the hash of signature headers. This is required for AWS Glacier, and optional for every other AWS service as of late 2016.
+`:uri_escape_path` | true | When `true`, the request URI path is uri-escaped as part of computing the canonical request string.
+`:apply_checksum_header` | true | When `true`, the computed content checksum is returned in the hash of signature headers.
 
-### `#sign_request`
+### Two methods for generating signatures
 
-#### GET
+Aws::Sigv4::Signer class provides two methods for generating signatures:
+
+- `:sign_request`
+- `:presign_url`
+
+#### `#sign_request` method
+
+Computes a version 4 signature signature. Returns the resultant signature as a hash of headers to apply to your HTTP request. The given request is not modified.
+
+##### GET
 
 ```ruby
 signature = signer.sign_request(
@@ -100,7 +105,7 @@ signature = signer.sign_request(
 )
 ```
 
-#### PUT
+##### PUT
 
 ```ruby
 signature = signer.sign_request(
@@ -109,7 +114,9 @@ signature = signer.sign_request(
 )
 ```
 
-### `#presign_url`
+#### `#presign_url` method
+
+Signs a URL with query authentication. Using query parameters to authenticate requests is useful when you want to express a request entirely in a URL. This method is also referred as presigning a URL.
 
 ```ruby
 url = signer.presigned_url(
