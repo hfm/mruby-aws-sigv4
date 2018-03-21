@@ -94,7 +94,7 @@ Aws::Sigv4::Signer class provides two methods for generating signatures:
 
 #### `#sign_request` method
 
-Computes a version 4 signature signature. Returns the resultant signature as a hash of headers to apply to your HTTP request. The given request is not modified.
+Computes a version 4 signature signature. Returns a instance of [Signature](./mrblib/signature.rb) which has `headers` hash to apply to your HTTP request.
 
 ```ruby
 # GET
