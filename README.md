@@ -36,7 +36,7 @@ signer = Aws::Sigv4::Signer.new(
 )
 ```
 
-#### 2. Using `:credentials` parametar
+#### 2. Using `:credentials` parameter
 
 You can set [Credentials](./mrblib/credencials.rb) to `:credentials`.
 
@@ -53,7 +53,7 @@ signer = Aws::Sigv4::Signer.new(
 )
 ```
 
-#### 3. Using `:credentials_provider` parametar:
+#### 3. Using `:credentials_provider` parameter:
 
 `:credentials_provider` requires any object that has the following methods:
 
@@ -76,7 +76,7 @@ signer = Aws::Sigv4::Signer.new(
 )
 ```
 
-#### Other initialization parametars
+#### Other initialization parameters
 
 option | default | description
 ---|---|---
