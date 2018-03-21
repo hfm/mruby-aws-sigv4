@@ -94,7 +94,18 @@ Aws::Sigv4::Signer class provides two methods for generating signatures:
 
 #### `#sign_request` method
 
-Computes a version 4 signature signature. Returns a instance of [Signature](./mrblib/signature.rb) which has `headers` hash to apply to your HTTP request.
+Computes a version 4 signature signature. Returns an instance of [Signature](./mrblib/signature.rb) which has `headers` hash to apply to your HTTP request.
+
+##### Options
+
+param | type | default | description
+---|---|---|---
+`:http_method` | String | - | One of 'GET', 'HEAD', 'PUT', 'POST', 'PATCH', or 'DELETE'
+`:url` |  String, URI::HTTPS, URI::HTTP | - | The request URI. Must be a valid HTTP or HTTPS URI.
+`:headers` | Hash | {} | This parametar is optional. A hash of headers to sign.
+`:body` | String, IO | '' | This parametar is optional. The HTTP request body for computing a sha256 checksum. If the 'X-Amz-Content-Sha256' header is set to `:headers`, This param will not be read.
+
+##### Examples
 
 ```ruby
 # GET
