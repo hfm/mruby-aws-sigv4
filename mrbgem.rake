@@ -2,6 +2,7 @@ MRuby::Gem::Specification.new('mruby-aws-sigv4') do |spec|
   spec.license = 'MIT'
   spec.authors = 'Okumura Takahiro'
   spec.summary = 'AWS Signature Version 4 signing library for mruby'
+  spec.version = '1.0.0'
 
   spec.add_dependency 'mruby-digest'
   spec.add_dependency 'mruby-enum-ext', core: 'mruby-enum-ext'
