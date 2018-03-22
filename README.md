@@ -11,7 +11,7 @@ MRuby::Build.new do |conf|
 
     # ... (snip) ...
 
-    conf.gem :github => 'hfm/mruby-aws-sigv4'
+    conf.gem mgem: 'hfm/mruby-aws-sigv4'
 end
 ```
 
