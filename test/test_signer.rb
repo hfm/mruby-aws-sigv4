@@ -1,3 +1,9 @@
+# [Aws::Sigv4::SignerTest]
+# These sourcedoces are based on here:
+# https://github.com/aws/aws-sdk-ruby/blob/master/gems/aws-sigv4/spec/signer_spec.rb
+# Copyright 2013. amazon web services, inc. all rights reserved.
+# License: http://www.apache.org/licenses/LICENSE-2.0
+#
 module Aws::Sigv4::SignerTest
   class ErrorsTest < MTest::Unit::TestCase
     def setup

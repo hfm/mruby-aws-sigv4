@@ -1,3 +1,9 @@
+# [Aws::Sigv4::Credentials]
+# These sourcedoces are based on here:
+# https://github.com/aws/aws-sdk-ruby/blob/master/gems/aws-sigv4/lib/aws-sigv4/credentials.rb
+# Copyright 2013. amazon web services, inc. all rights reserved.
+# License: http://www.apache.org/licenses/LICENSE-2.0
+#
 module Aws
   module Sigv4
     class Credentials
